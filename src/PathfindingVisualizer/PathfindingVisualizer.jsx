@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import Node from "./Node/Node";
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
 
@@ -8,6 +9,29 @@ const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 35;
+
+const Button = styled.button`
+  background-color: palevioletred;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+`;
+
+// Create a Title component that'll render an <h1> tag with some styles
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+// Create a Wrapper component that'll render a <section> tag with some styles
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -78,9 +102,15 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-        <button onClick={() => this.visualizeDijkstra()}>
+        <Button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
-        </button>
+        </Button>
+        <Wrapper>
+          <Title>
+            Click and drag anywhere on the grid to create walls for the
+            algorithm to navigate past
+          </Title>
+        </Wrapper>
         <div className='grid'>
           {grid.map((row, rowIdx) => {
             return (
